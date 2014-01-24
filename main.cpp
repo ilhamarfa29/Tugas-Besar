@@ -1,10 +1,10 @@
-//tictactoe 5x5
-
 #include <iostream>
+#include <conio.h>
 #include <cstdlib>
 
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
 using namespace std;
- 
+
 class TicTacToe
 {
 	public:
@@ -27,30 +27,62 @@ class TicTacToe
 		char board[rows][cols];
 };
 
-int main()
-{
-	size_t r,c;
-	char winner;
-
-	TicTacToe a;
-	while(true)
-	{
-		//PEMAIN PERTAMA MULAI
-		a.getInput('X',r,c);
-		a.PrintBoard();
-		winner=a.CheckForWinner();
-		if (winner!=' ') //JIKA PEMAIN PERTAMA MENANG, KELUAR DARI PENGULANGAN
-			break;
+int main(int argc, char** argv) {
+	int menu;
+	do{
 		
-		//PEMAIN KEDUA MULAI
-		a.getInput('O',r,c);
-		a.PrintBoard();
-		winner=a.CheckForWinner();
-		if (winner!=' ') //JIKA PEMAIN KEDUA MENANG, KELUAR DARI PENGULANGAN
+		system("cls");
+		cout<<"Menu Pilihan TIC TAC TOE"<<endl;
+		cout<<"------------------------"<<endl;
+		cout<<"1. Main"<<endl;
+		cout<<"2. Keluar"<<endl;
+		cout<<"------------------------"<<endl;
+		cout<<"Masukkan pilihan : ";
+		cin>>menu;
+		
+		switch(menu){
+			case 1:{
+			
+			
+				system("cls");
+				size_t r,c;
+				char winner;
+
+				TicTacToe a;
+				while(true){
+					//PEMAIN PERTAMA MULAI
+				a.getInput('X',r,c);
+				a.PrintBoard();
+				winner=a.CheckForWinner();
+				if (winner!=' ') //JIKA PEMAIN PERTAMA MENANG, KELUAR DARI PENGULANGAN
+				break;
+		
+				//PEMAIN KEDUA MULAI
+				a.getInput('O',r,c);
+				a.PrintBoard();
+				winner=a.CheckForWinner();
+				if (winner!=' ') //JIKA PEMAIN KEDUA MENANG, KELUAR DARI PENGULANGAN
+					break;
+				}
+				a.printWinner(winner);
+				getch();
+			}
+			
 			break;
-	}
-	a.printWinner(winner);
-	system("PAUSE");
+			case 2:
+				cout<<endl<<"::Terimakasih Telah bermain::"<<endl;
+				cout<<endl<<"Tekan sembarang tombol untuk keluar"<<endl;
+				getch();
+				return 0; 	
+			break;
+			default: 
+				cout<<endl<<"Pilihan tidak terdaftar."<<endl;
+				cout<<"Tekan sembarang tombol untuk kembali ke sub menu."<<endl;
+				getch();
+			break;
+		}
+		
+	}while(menu!=2);
 	return 0;
 }
 
@@ -217,4 +249,5 @@ bool TicTacToe::OccupySquare( size_t r,size_t c, char marker)
     }
 	return false;
 }
+
 
